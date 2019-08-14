@@ -20,7 +20,9 @@ module.exports = {
   themeConfig: {
     nav: [
       { text: '首页', link: '/' },
-      { text: '分类', items: [
+      { text: '阅读摘录', link: '/' },
+      { text: '零碎', link: '/' },
+      { text: '技术分类', items: [
           { text: 'vue', link: '/vue/' },
           { text: 'react', link: '/react/' },
           { text: 'node', link: '/node/' },
