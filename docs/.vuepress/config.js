@@ -32,7 +32,8 @@ module.exports = {
     sidebar: {
       '/article/': '',
       '/vue/': [
-        ''
+        '',
+        'directives'
       ],
       '/react/': [
         ''
