@@ -1,12 +1,12 @@
 module.exports = {
   title: 'Dear Friends',
   description: 'Just playing around',
-  // displayAllHeaders: true,
-  // search: false,
-  // lastUpdated: true,
-  // base: '/',
+  displayAllHeaders: true,
+  search: false,
+  lastUpdated: true,
+  base: '/',
   head: [
-    ['link', { rel: 'icon', href: '/logo.png' }], // 增加一个自定义的 favicon(网页标签的图标)
+    ['link', { rel: 'icon', href: '../assets/sun.ico' }], // 增加一个自定义的 favicon(网页标签的图标)
     ['link', { rel: 'manifest', href: '/logo.png' }],
     ['link', { rel: 'apple-touch-icon', href: '/logo.png' }],
     ['link', { rel: 'mask-icon', href: '/logo.png', color: '#3eaf7c' }],
@@ -20,30 +20,31 @@ module.exports = {
   themeConfig: {
     nav: [
       { text: '首页', link: '/' },
-      { text: '集合', items: [
-          { text: 'article', link: '/article/' },
-          { text: 'bar', link: '/bar/' },
-          { text: 'icon', link: '/icon/' }
+      { text: '分类', items: [
+          { text: 'vue', link: '/vue/' },
+          { text: 'react', link: '/react/' },
+          { text: 'node', link: '/node/' },
+          { text: 'python', link: '/python/' }
         ]
       },
       { text: 'github', link: 'https://github.com/isting/' }
     ],
     sidebar: {
-      '/article/': [
-        '',
-        'one',
-        'two'
+      '/article/': '',
+      '/vue/': [
+        ''
       ],
-      '/bar/': [
-        '',
-        'one',
-        'two'
+      '/react/': [
+        ''
       ],
-      '/icon/': [
-        '',
-        'one',
-        'two'
+      '/node/': [
+        ''
       ],
+      '/python/': [
+        '',
+        // 'one',
+        // 'two'
+      ]
     },
     sidebarDepth: 2, // 侧边栏显示2级
   },
