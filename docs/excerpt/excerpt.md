@@ -1,5 +1,0 @@
-# excerpt
-
-excerpt
-excerpt
-excerpt

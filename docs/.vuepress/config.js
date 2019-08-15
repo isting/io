@@ -32,9 +32,9 @@ module.exports = {
       { text: 'github', link: 'https://github.com/isting/' }
     ],
     sidebar: {
-      '/article/': '/',
-      '/excerpt/': 'excerpt',
-      '/fragmentary/': 'fragmentary',
+      '/article/': '',
+      '/excerpt/': '',
+      '/fragmentary/': '',
       '/vue/': [
         '',
         'directives'
