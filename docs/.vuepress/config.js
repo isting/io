@@ -20,8 +20,8 @@ module.exports = {
   themeConfig: {
     nav: [
       { text: '首页', link: '/' },
-      { text: '阅读摘录', link: '/' },
-      { text: '零碎', link: '/' },
+      { text: '阅读摘录', link: '/excerpt/' },
+      { text: '零碎', link: '/fragmentary/' },
       { text: '技术分类', items: [
           { text: 'vue', link: '/vue/' },
           { text: 'react', link: '/react/' },
@@ -32,7 +32,9 @@ module.exports = {
       { text: 'github', link: 'https://github.com/isting/' }
     ],
     sidebar: {
-      '/article/': '',
+      '/article/': '/',
+      '/excerpt/': 'excerpt',
+      '/fragmentary/': 'fragmentary',
       '/vue/': [
         '',
         'directives'
