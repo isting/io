@@ -1,3 +1,5 @@
+<multimedia-voice />
+
 ## strive
 
 [转载，原文地址](https://baijiahao.baidu.com/s?id=1606475298539806481&wfr=spider&for=pc)
