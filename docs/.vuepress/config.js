@@ -2,7 +2,6 @@ module.exports = {
   title: 'Dear Friends',
   description: 'Just playing around',
   displayAllHeaders: true,
-  search: false,
   lastUpdated: true,
   base: '/',
   head: [
@@ -18,11 +17,15 @@ module.exports = {
     lineNumbers: true // 代码块显示行号
   },
   themeConfig: {
+    search: false,
+    searchMaxSuggestions: 10,
     nav: [
       { text: '首页', link: '/' },
       { text: '阅读摘录', link: '/excerpt/' },
       // { text: '零碎', link: '/fragmentary/' },
-      { text: '技术分类', items: [
+      {
+        text: '技术分类',
+        items: [
           { text: 'vue', link: '/vue/' },
           { text: 'react', link: '/react/' },
           { text: 'node', link: '/node/' },
@@ -35,25 +38,23 @@ module.exports = {
       '/article/': '',
       '/excerpt/': '',
       '/fragmentary/': '',
-      '/vue/': [
-        '',
-        'directives'
-      ],
-      '/react/': [
-        ''
-      ],
-      '/node/': [
-        ''
-      ],
+      '/vue/': ['', 'directives'],
+      '/react/': [''],
+      '/node/': [''],
       '/python/': [
-        '',
+        ''
         // 'one',
         // 'two'
       ]
     },
-    sidebarDepth: 2, // 侧边栏显示2级
+    sidebarDepth: 2 // 侧边栏显示2级
   },
-  plugins: [
-    "vuepress-plugin-cat",
-  ]
+  plugins: ['vuepress-plugin-cat'],
+  configureWebpack: {
+    resolve: {
+      alias: {
+        '@public': './public'
+      }
+    }
+  }
 }
