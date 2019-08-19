@@ -1,273 +1,29 @@
-## 十个案例学会 React Hooks
-![img](https://pic4.zhimg.com/v2-f888deb7a91526a1a0ba5e9a75ecc32d_1200x500.jpg)
+## strive
 
-[转载，原文地址](https://github.com/happylindz/blog/issues/19)
+[转载，原文地址](https://baijiahao.baidu.com/s?id=1606475298539806481&wfr=spider&for=pc)
 
-### 前言
+我们生活中总是可以看到许多满脸颓废，他们似乎已经失去了上进的动力，就这样心甘情愿的在最应该奋斗的年纪选择了虚晃度日。而有时，他们不仅会自己不愿再去做出改变，还会去对身边人的努力上进故意冷嘲热讽。而我们努力的原因就是为了让自己快速的离开现在所处的环境，当你在一个失去上进的大环境呆久了，如果我们没有足够的意志，大多数人都会被圈子所同化，从而忘却了自己的初心。
 
-在 React 的世界中，有容器组件和 UI 组件之分，在 React Hooks 出现之前，UI 组件我们可以使用函数，无状态组件来展示 UI，而对于容器组件，函数组件就显得无能为力，我们依赖于类组件来获取数据，处理数据，并向下传递参数给 UI 组件进行渲染。在我看来，使用 React Hooks 相比于从前的类组件有以下几点好处：
+![img](https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=4191387873,2265404952&fm=173&app=25&f=JPEG?w=640&h=427&s=A0449E4FDE040F5DB8936DBC0300C012)
 
-1. 代码可读性更强，原本同一块功能的代码逻辑被拆分在了不同的生命周期函数中，容易使开发者不利于维护和迭代，通过 React Hooks 可以将功能代码聚合，方便阅读维护
-2. 组件树层级变浅，在原本的代码中，我们经常使用 HOC/render props 等方式来复用组件的状态，增强功能等，无疑增加了组件树层数及渲染，而在 React Hooks 中，这些功能都可以通过强大的自定义的 Hooks 来实现
+决定我们自己生活以后的样子的关键，其实有时候就在你自己的一瞬之间，我们许多人在某一刻意识到，不该再去让自己处于这种现状之中，而有的人会及时去让自己做出改变，而有些人也许习惯了现状，也许是觉得为时已晚，就这样一直不停的在理想与现实之中徘徊着。我们现在也许现状并不如自己的意，但我们不能失去自己的志向，我们来到这世上，总要去做点什么。
 
-React 在 v16.8 的版本中推出了 React Hooks 新特性，虽然社区还没有最佳实践如何基于 React Hooks 来打造复杂应用(至少我还没有)，凭借着阅读社区中大量的关于这方面的文章，下面我将通过十个案例来帮助你认识理解并可以熟练运用 React Hooks 大部分特性。
+![img](https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=2415836064,152015217&fm=173&app=25&f=JPEG?w=640&h=427&s=A0EAF605E61A7E7D3C21C5880300F097)
 
-### 1. useState 保存组件状态
-在类组件中，我们使用 this.state 来保存组件状态，并对其修改触发组件重新渲染。比如下面这个简单的计数器组件，很好诠释了类组件如何运行：
+其实有时候最可悲的并不是甘于随波逐流，而是自己已经失去了人生的理想却还总是对任何事物都犹犹豫豫。我们失去了自己的理想，就等于失去了自己生存的意义，我们活着，我们总要去给自己的心灵找一点生活的寄托，否则人生只会去变得空虚而且会让自己越来越渺小，而这需要我们有着为之努力的恒心，和满怀希望的自信。
 
-```javascript
-import React from "react";
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      count: 0,
-      name: "alife"
-    };
-  }
-  render() {
-    const { count } = this.state;
-    return (
-      <div>
-        Count: {count}
-        <button onClick={() => this.setState({ count: count + 1 })}>+</button>
-        <button onClick={() => this.setState({ count: count - 1 })}>-</button>
-      </div>
-    );
-  }
-}
-```
+![img](https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=2415836064,152015217&fm=173&app=25&f=JPEG?w=640&h=427&s=A0EAF605E61A7E7D3C21C5880300F097)
 
-一个简单的计数器组件就完成了，而在函数组件中，由于没有 this 这个黑魔法，React 通过 useState 来帮我们保存组件的状态
+我们不要总是什么都想去得到，却又没有实际的行动来证明。有时候我们只需要选好一个目标并且去努力的把他攻陷，这样你的胜算才会更大，你什么都想要，只会让自己思绪纷乱，到头来什么都没有做到。有时候，其实你离胜利就差几步，而你却又重新选择目标并且重新开始，当你意识到的时候想要再去回头已经错过最佳的机会，只能去不得不接受现实。
 
-```js
-import React, { useState } from "react";
-function App() {
-  const [obj, setObject] = useState({
-    count: 0,
-    name: "alife"
-  });
-  return (
-    <div className="App">
-      Count: {obj.count}
-      <button onClick={() => setObject({ ...obj, count: obj.count + 1 })}>+</button>
-      <button onClick={() => setObject({ ...obj, count: obj.count - 1 })}>-</button>
-    </div>
-  );
-}
-```
+![img](https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1043633628,1097320695&fm=173&app=25&f=JPEG?w=640&h=427&s=695114C6EF28070F7DAEE72203006053)
 
-通过传入 useState 参数后返回一个带有默认状态和改变状态函数的数组。通过传入新状态给函数来改变原本的状态值。**值得注意的是 useState 不帮助你处理状态，相较于 setState 非覆盖式更新状态，useState 覆盖式更新状态，需要开发者自己处理逻辑。(代码如上)** <br><br>
-似乎有个 useState 后，函数组件也可以拥有自己的状态了，但仅仅是这样完全不够。
+你以怎样的心绪去思考自己的人生，你便能看到一个怎样的世界，也许我们偶尔会有颓废之感，其实只是我们感到累了，去让自己不要想那么多的睡一觉，醒来时便会心情舒畅。哪怕有时候你想要发泄出自己的愤怒，但你要去想好，你现在的实力能不能付得起你愤怒过后的代价。所以不管什么，总会有人比你强，不要时时刻刻都想着宣泄自己的心情，你的时间是有限的，所以不要把时间用在思考生气上。
 
-### 2. useEffect 处理副作用
+![img](https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1136424891,397407914&fm=173&app=25&f=JPEG?w=640&h=426&s=B600944E18624D05459FB97B0300C018)
 
-函数组件能保存状态，但是对于异步请求，副作用的操作还是无能为力，所以 React 提供了 useEffect 来帮助开发者处理函数组件的副作用，在介绍新 API 之前，我们先来看看类组件是怎么做的：
+去相信自己内心的那个声音，因为他已经知道你想去成为什么样的人。我们在做任何事，都要保持初学者的心态，你能做到它就是一件了不起的事情，这个世上，只要我们肯努力奋斗，那成功只不过是时间的问题，我们想要去达到自己内心的目的，那我们一定要有一个确切的目标，这样你才不会在过程中迷失自己，才能在过程中保持清晰的头脑，不会莫名的就突然不知所措。
 
-```js
-import React, { Component } from "react";
-class App extends Component {
-  state = {
-    count: 1
-  };
-  componentDidMount() {
-    const { count } = this.state;
-    document.title = "componentDidMount" + count;
-    this.timer = setInterval(() => {
-      this.setState(({ count }) => ({
-        count: count + 1
-      }));
-    }, 1000);
-  }
-  componentDidUpdate() {
-    const { count } = this.state;
-    document.title = "componentDidMount" + count;
-  }
-  componentWillUnmount() {
-    document.title = "componentWillUnmount";
-    clearInterval(this.timer);
-  }
-  render() {
-    const { count } = this.state;
-    return (
-      <div>
-        Count:{count}
-        <button onClick={() => clearInterval(this.timer)}>clear</button>
-      </div>
-    );
-  }
-}
-```
-在例子中，组件每隔一秒更新组件状态，并且每次触发更新都会触发 document.title 的更新(副作用)，而在组件卸载时修改 document.title（类似于清除）
+![img](https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1425166945,25104872&fm=173&app=25&f=JPEG?w=640&h=427&s=5EAEA9454268270D7ABC71B70300C000)
 
-从例子中可以看到，一些重复的功能开发者需要在 componentDidMount 和 componentDidUpdate 重复编写，而如果使用 useEffect 则完全不一样。
-```js
-import React, { useState, useEffect } from "react";
-let timer = null;
-function App() {
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    document.title = "componentDidMount" + count;
-  },[count]);
-
-  useEffect(() => {
-    timer = setInterval(() => {
-      setCount(prevCount => prevCount + 1);
-    }, 1000);
-    return () => {
-      document.title = "componentWillUnmount";
-      clearInterval(timer);
-    };
-  }, []);
-  return (
-    <div>
-      Count: {count}
-      <button onClick={() => clearInterval(timer)}>clear</button>
-    </div>
-  );
-}
-```
-我们使用 useEffect 重写了上面的例子，useEffect 第一个参数传递函数，可以用来做一些副作用比如异步请求，修改外部参数等行为，而第二个参数是个数组，如果数组中的值才会触发 useEffect 第一个参数中的函数。返回值(如果有)则在组件销毁或者调用函数前调用。
-
-1. 比如第一个 useEffect 中，理解起来就是一旦 count 值发生改变，则修改 documen.title 值
-2. 而第二个 useEffect 中数组没有传值，代表不监听任何参数变化，即只有在组件初始化或销毁的时候才会触发，用来代替 componentDidMount 和 componentWillUnmount
-
-基于这个强大 Hooks，我们可以模拟封装出其他生命周期函数，比如 componentDidUpdate 代码十分简单
-
-```js
-function useUpdate(fn) {
-    // useRef 创建一个引用
-    const mounting = useRef(true);
-    useEffect(() => {
-      if (mounting.current) {
-        mounting.current = false;
-      } else {
-        fn();
-      }
-    });
-}
-```
-现在我们有了 useState 管理状态，useEffect 处理副作用，异步逻辑，学会这两招足以应对大部分类组件的使用场景。
-
-### 3. useContext 减少组件层级
-
-上面介绍了 useState、useEffect 这两个最基本的 API，接下来介绍的 useContext 是 React 帮你封装好的，用来处理多层级传递数据的方式，在以前组件树种，跨层级祖先组件想要给孙子组件传递数据的时候，除了一层层 props 往下透传之外，我们还可以使用 React Context API 来帮我们做这件事，举个简单的例子：
-
-```js
-const { Provider, Consumer } = React.createContext(null);
-function Bar() {
-  return <Consumer>{color => <div>{color}</div>}</Consumer>;
-}
-function Foo() {
-  return <Bar />;
-}
-function App() {
-  return (
-    <Provider value={"grey"}>
-      <Foo />
-    </Provider>
-  );
-}
-```
-
-通过 React createContext 的语法，在 APP 组件中可以跨过 Foo 组件给 Bar 传递数据。而在 React Hooks 中，我们可以使用 useContext 进行改造。
-
-```js
-const colorContext = React.createContext("gray");
-function Bar() {
-  const color = useContext(colorContext);
-  return <div>{color}</div>;
-}
-function Foo() {
-  return <Bar />;
-}
-function App() {
-  return (
-    <colorContext.Provider value={"red"}>
-      <Foo />
-    </colorContext.Provider>
-  );
-}
-
-```
-
-传递给 useContext 的是 context 而不是 consumer，返回值即是想要透传的数据了。用法很简单，使用 useContext 可以解决 Consumer 多状态嵌套的问题。
-
-```js
-function HeaderBar() {
-  return (
-    <CurrentUser.Consumer>
-      {user =>
-        <Notifications.Consumer>
-          {notifications =>
-            <header>
-              Welcome back, {user.name}!
-              You have {notifications.length} notifications.
-            </header>
-          }
-      }
-    </CurrentUser.Consumer>
-  );
-}
-```
-
-而使用 useContext 则变得十分简洁，可读性更强且不会增加组件树深度。
-
-```js
-function HeaderBar() {
-  const user = useContext(CurrentUser);
-  const notifications = useContext(Notifications);
-  return (
-    <header>
-      Welcome back, {user.name}!
-      You have {notifications.length} notifications.
-    </header>
-  );
-}
-```
-
-### 4. useReducer
-
-useReducer 这个 Hooks 在使用上几乎跟 Redux/React-Redux 一模一样，唯一缺少的就是无法使用 redux 提供的中间件。我们将上述的计时器组件改写为 useReducer
-
-```js
-import React, { useReducer } from "react";
-const initialState = {
-  count: 0
-};
-function reducer(state, action) {
-  switch (action.type) {
-    case "increment":
-      return { count: state.count + action.payload };
-    case "decrement":
-      return { count: state.count - action.payload };
-    default:
-      throw new Error();
-  }
-}
-function App() {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  return (
-    <>
-      Count: {state.count}
-      <button onClick={() => dispatch({ type: "increment", payload: 5 })}>
-        +
-      </button>
-      <button onClick={() => dispatch({ type: "decrement", payload: 5 })}>
-        -
-      </button>
-    </>
-  );
-}
-```
-
-用法跟 Redux 基本上是一致的，用法也很简单，算是提供一个 mini 的 Redux 版本。
-
-### 5. useCallback 记忆函数
-### 6. useMemo 记忆组件
-### 7. useRef 保存引用值
-### 8. useImperativeHandle 透传 Ref
-### 9. useLayoutEffect 同步执行副作用
-### 10. React Hooks 不足
-
-尽管我们通过上面的例子看到 React Hooks 的强大之处，似乎类组件完全都可以使用 React Hooks 重写。但是当下 v16.8 的版本中，还无法实现 getSnapshotBeforeUpdate 和 componentDidCatch 这两个在类组件中的生命周期函数。官方也计划在不久的将来在 React Hooks 进行实现。
+我们都有着一个共同的敌人，那就是自己。人生一个我们都应该去谨记的，我们要去做自己主宰自己的人，否则你只会成为别人胜利的牺牲品。有人曾说过，喷泉不管它能有多高，它永远也不能超过它的源头；一个人他能有什么样的成就，这便看他内心对目标有着多大的信念。努力的过程对意志不坚定的人是痛苦的，所以我们一定要对自己有着坚定的信念，才能在胜利到来的时候把它抓住。
