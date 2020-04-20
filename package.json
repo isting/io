@@ -15,6 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "vuepress": "^1.4.1",
     "vuepress-plugin-cat": "^1.0.3"
   },
   "devDependencies": {
