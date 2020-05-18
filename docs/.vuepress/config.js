@@ -3,7 +3,7 @@ module.exports = {
   description: 'Just playing around',
   displayAllHeaders: true,
   lastUpdated: true,
-  base: '/bar/',
+  base: '/',
   head: [
     ['link', { rel: 'icon', href: '../assets/sun.ico' }], // 增加一个自定义的 favicon(网页标签的图标)
     ['link', { rel: 'manifest', href: '/logo.png' }],
