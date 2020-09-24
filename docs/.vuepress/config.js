@@ -21,15 +21,16 @@ module.exports = {
     searchMaxSuggestions: 10,
     nav: [
       { text: '首页', link: '/' },
-      { text: '阅读摘录', link: '/excerpt/' },
+      // { text: '阅读摘录', link: '/excerpt/' },
       // { text: '零碎', link: '/fragmentary/' },
       {
         text: '技术分类',
         items: [
           { text: 'vue', link: '/vue/' },
-          { text: 'react', link: '/react/' },
-          { text: 'node', link: '/node/' },
-          { text: 'python', link: '/python/' }
+          { text: 'git', link: '/git/' },
+          // { text: 'react', link: '/react/' },
+          // { text: 'node', link: '/node/' },
+          // { text: 'python', link: '/python/' }
         ]
       },
       { text: 'github', link: 'https://github.com/isting/' }
